@@ -238,7 +238,7 @@
                 🦖
             </div>
             <h1>Slang Saurus</h1>
-            <p>Kamus gaul paling update, disusun langsung dari dokumen rahasia para Gen Z!</p>
+            <p>Kamus gaul paling update, disusun langsung dari spreadsheet pilihanmu!</p>
             
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -250,7 +250,7 @@
     <!-- Content Area -->
     <main>
         <div class="section-title">
-            <i class="fa-solid fa-book-open">></i> Daftar Kosakata Slang
+            <i class="fa-solid fa-book-open"></i> Daftar Kosakata Slang
         </div>
 
         <div id="loading" class="status-message">
@@ -299,12 +299,11 @@
             gridEl.innerHTML = '';
 
             data.forEach(item => {
-                // Menyesuaikan dengan nama kolom di spreadsheet (biasanya: term/Kata, meaning/Definisi, example/Contoh, category/Kategori)
-                // Kita buat fallback fleksibel jika nama kolomnya sedikit berbeda
-                const term = item.term || item['Kata / Frasa'] || item.Kata || 'Tanpa Nama';
-                const meaning = item.meaning || item['Definisi (Bahasa Indonesia)'] || item.Arti || '-';
-                const example = item.example || item['Contoh Kalimat (Bahasa Inggris)'] || item.Contoh || '-';
-                const category = item.category || item.Category || 'General';
+                // Membaca kolom persis: Slang, Meaning, Example Sentence, dan kategori (jika ada)
+                const term = item.Slang || item.term || 'Tanpa Nama';
+                const meaning = item.Meaning || item.meaning || '-';
+                const example = item['Example Sentence'] || item.example || '-';
+                const category = item.Category || item.category || 'General';
 
                 const card = document.createElement('div');
                 card.className = 'slang-card';
@@ -325,8 +324,8 @@
         function filterSlang() {
             const keyword = document.getElementById('searchInput').value.toLowerCase();
             const filtered = allSlangData.filter(item => {
-                const term = (item.term || item['Kata / Frasa'] || item.Kata || '').toLowerCase();
-                const meaning = (item.meaning || item['Definisi (Bahasa Indonesia)'] || item.Arti || '').toLowerCase();
+                const term = (item.Slang || item.term || '').toLowerCase();
+                const meaning = (item.Meaning || item.meaning || '').toLowerCase();
                 return term.includes(keyword) || meaning.includes(keyword);
             });
             displaySlangCards(filtered);
