@@ -37,10 +37,41 @@
             flex-direction: column;
         }
 
+        /* Top Nav / Info Button Bar */
+        .top-bar {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .info-btn {
+            background: var(--white);
+            color: var(--primary-green);
+            border: 2px solid var(--accent-green);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: 'Fredoka', cursive;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        .info-btn:hover {
+            background: var(--mint-light);
+            transform: translateY(-2px);
+        }
+
         /* Header & Hero Section */
         header {
             background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
-            padding: 40px 20px;
+            padding: 20px 20px 40px;
             text-align: center;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
@@ -213,6 +244,92 @@
             font-style: italic;
         }
 
+        /* Modal / Popup Informasi */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.6rem;
+            color: var(--primary-green);
+        }
+
+        .close-btn {
+            background: var(--mint-light);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1rem;
+            color: var(--primary-green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: var(--accent-green);
+            color: var(--white);
+        }
+
+        .modal-body {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .modal-body h4 {
+            font-family: 'Fredoka', cursive;
+            color: var(--primary-green);
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -225,11 +342,18 @@
         }
 
         footer span {
-            color: #e63946;
+            color: #2d6a4f;
         }
     </style>
 </head>
 <body>
+
+    <!-- Top Navigation Bar (Tombol Info) -->
+    <div class="top-bar">
+        <button class="info-btn" onclick="toggleModal(true)">
+            <i class="fa-solid fa-circle-info"></i> Tentang Web & Developer
+        </button>
+    </div>
 
     <!-- Header & Hero -->
     <header>
@@ -262,12 +386,29 @@
         </div>
     </main>
 
+    <!-- Modal / Popup Informasi -->
+    <div id="infoModal" class="modal-overlay" onclick="handleOutsideClick(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Tentang Slang Saurus 🦖</h3>
+                <button class="close-btn" onclick="toggleModal(false)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <h4>📖 Pengantar Web</h4>
+                <p>Slang Saurus adalah website sederhana yang kami kembangkan sebagai sumber belajar siapapun untuk mengerti dan memahami berbagai slang yang sering digunakan di seluruh penjuru dunia (terutama bahasa Inggris). Semoga website ini bisa membantu kalian untuk mengerti tiap arti slang tanpa terkecuali.</p>
+                
+                <h4>👩‍💻 Tentang Developer</h4>
+                <p>Web ini merupakan buah karya kita, mahasiswa PBI yang sama-sama linpro ke mata kuliah Pengembangan Sumber Belajar Digital, dengan bantuan AI untuk menyusun coding rumit hingga terciptalah Slang Saurus ini. Harapannya website ini bisa membantu siapapun yang ingin belajar dan mengerti berbagai slang lebih jauh.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
-        <p>Made with <span>💚</span> by Slang Saurus Team &copy; 2026</p>
+        <p>Made with <span>💚</span> by Slangvengers</p>
     </footer>
 
-    <!-- Script untuk Tarik Data dari Spreadsheet via SheetDB -->
+    <!-- Script JavaScript -->
     <script>
         const apiUrl = 'https://sheetdb.io/api/v1/g7sh7xm5hher2';
         let allSlangData = [];
@@ -299,7 +440,6 @@
             gridEl.innerHTML = '';
 
             data.forEach(item => {
-                // Membaca kolom persis: Slang, Meaning, Example Sentence, dan kategori (jika ada)
                 const term = item.Slang || item.term || 'Tanpa Nama';
                 const meaning = item.Meaning || item.meaning || '-';
                 const example = item['Example Sentence'] || item.example || '-';
@@ -329,6 +469,23 @@
                 return term.includes(keyword) || meaning.includes(keyword);
             });
             displaySlangCards(filtered);
+        }
+
+        // Fungsi Modal Info
+        function toggleModal(open) {
+            const modal = document.getElementById('infoModal');
+            if (open) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function handleOutsideClick(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                toggleModal(false);
+            }
         }
 
         // Panggil fungsi saat halaman pertama kali dibuka
