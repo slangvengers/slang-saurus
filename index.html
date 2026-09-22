@@ -118,6 +118,7 @@
             font-size: 1.05rem;
             color: var(--text-muted);
             margin-bottom: 25px;
+            font-style: italic;
         }
 
         /* Search Bar */
@@ -197,11 +198,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
+            position: relative;
         }
 
         .slang-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.12);
+            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.15);
+            border-color: var(--accent-green);
         }
 
         .card-header {
@@ -244,7 +248,15 @@
             font-style: italic;
         }
 
-        /* Modal / Popup Informasi */
+        .card-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Modal / Popup Umum */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -330,6 +342,50 @@
             font-size: 1.1rem;
         }
 
+        /* Specific style for Slang Detail Popup */
+        .detail-term {
+            font-family: 'Fredoka', cursive;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+
+        .detail-category-badge {
+            display: inline-block;
+            background: var(--mint-light);
+            color: var(--primary-green);
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .detail-section-title {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .detail-meaning-box {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .detail-example-box {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #555;
+            border-left: 4px solid var(--accent-green);
+            font-style: italic;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -350,7 +406,7 @@
 
     <!-- Top Navigation Bar (Tombol Info) -->
     <div class="top-bar">
-        <button class="info-btn" onclick="toggleModal(true)">
+        <button class="info-btn" onclick="toggleInfoModal(true)">
             <i class="fa-solid fa-circle-info"></i> Tentang Web & Developer
         </button>
     </div>
@@ -362,7 +418,7 @@
                 🦖
             </div>
             <h1>Slang Saurus</h1>
-            <p>Kamus gaul paling update, disusun langsung dari spreadsheet pilihanmu!</p>
+            <p>Your ultimate digital companion for modern English expressions.</p>
             
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -386,12 +442,12 @@
         </div>
     </main>
 
-    <!-- Modal / Popup Informasi -->
-    <div id="infoModal" class="modal-overlay" onclick="handleOutsideClick(event)">
+    <!-- Modal / Popup Informasi Web & Developer -->
+    <div id="infoModal" class="modal-overlay" onclick="handleOutsideClick(event, 'infoModal')">
         <div class="modal-box">
             <div class="modal-header">
                 <h3>Tentang Slang Saurus 🦖</h3>
-                <button class="close-btn" onclick="toggleModal(false)"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close-btn" onclick="toggleInfoModal(false)"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
                 <h4>📖 Pengantar Web</h4>
@@ -399,6 +455,26 @@
                 
                 <h4>👩‍💻 Tentang Developer</h4>
                 <p>Web ini merupakan buah karya kita, mahasiswa PBI yang sama-sama linpro ke mata kuliah Pengembangan Sumber Belajar Digital, dengan bantuan AI untuk menyusun coding rumit hingga terciptalah Slang Saurus ini. Harapannya website ini bisa membantu siapapun yang ingin belajar dan mengerti berbagai slang lebih jauh.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal / Popup Detail Kartu Slang -->
+    <div id="detailModal" class="modal-overlay" onclick="handleOutsideClick(event, 'detailModal')">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Detail Slang 🔍</h3>
+                <button class="close-btn" onclick="toggleDetailModal(false)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalTerm" class="detail-term">Kata</div>
+                <div id="modalCategory" class="detail-category-badge">Kategori</div>
+                
+                <div class="detail-section-title">Arti / Definisi:</div>
+                <div id="modalMeaning" class="detail-meaning-box">Arti kata...</div>
+                
+                <div class="detail-section-title">Contoh Penggunaan:</div>
+                <div id="modalExample" class="detail-example-box">"Contoh kalimat..."</div>
             </div>
         </div>
     </div>
@@ -447,6 +523,8 @@
 
                 const card = document.createElement('div');
                 card.className = 'slang-card';
+                card.onclick = () => showSlangDetail(term, meaning, example, category);
+
                 card.innerHTML = `
                     <div>
                         <div class="card-header">
@@ -455,7 +533,10 @@
                         </div>
                         <div class="slang-meaning">${meaning}</div>
                     </div>
-                    <div class="slang-example">"${example}"</div>
+                    <div>
+                        <div class="slang-example">"${example}"</div>
+                        <div class="card-hint"><i class="fa-regular fa-hand-pointer"></i> Klik untuk lihat detail</div>
+                    </div>
                 `;
                 gridEl.appendChild(card);
             });
@@ -471,8 +552,25 @@
             displaySlangCards(filtered);
         }
 
-        // Fungsi Modal Info
-        function toggleModal(open) {
+        function showSlangDetail(term, meaning, example, category) {
+            document.getElementById('modalTerm').innerText = term;
+            document.getElementById('modalCategory').innerText = category;
+            document.getElementById('modalMeaning').innerText = meaning;
+            document.getElementById('modalExample').innerText = `"${example}"`;
+            
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function toggleDetailModal(open) {
+            const modal = document.getElementById('detailModal');
+            if (open) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function toggleInfoModal(open) {
             const modal = document.getElementById('infoModal');
             if (open) {
                 modal.classList.add('active');
@@ -481,14 +579,13 @@
             }
         }
 
-        function handleOutsideClick(event) {
-            const modal = document.getElementById('infoModal');
+        function handleOutsideClick(event, modalId) {
+            const modal = document.getElementById(modalId);
             if (event.target === modal) {
-                toggleModal(false);
+                modal.classList.remove('active');
             }
         }
 
-        // Panggil fungsi saat halaman pertama kali dibuka
         fetchSlangData();
     </script>
 </body>
