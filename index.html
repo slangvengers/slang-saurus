@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slang Saurus - Kamus Gaul Paling Prehistoric</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dinogreen: {
+                            50: '#f4fbf7',
+                            100: '#e6f7ec',
+                            200: '#c8eed5',
+                            300: '#9be0b2',
+                            400: '#64cc87',
+                            500: '#3eb364',
+                            600: '#2f934f',
+                            700: '#277541',
+                            800: '#225d36',
+                            900: '#1d4d2e',
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4fbf7;
+            color: #1d4d2e;
+        }
+        .dino-bounce {
+            animation: bounce 3s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(62, 179, 100, 0.15), 0 8px 10px -6px rgba(62, 179, 100, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-dinogreen-200 selection:text-dinogreen-900">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-dinogreen-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Mascot -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-dinogreen-500 to-dinogreen-400 flex items-center justify-center shadow-md shadow-dinogreen-500/30 group-hover:scale-105 transition-transform">
+                    <!-- SVG Cute Dinosaur Mascot -->
+                    <svg class="w-8 h-8 text-white dino-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 11V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5" />
+                        <path d="M7 11h7a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3z" />
+                        <circle cx="10" cy="14" r="1" fill="currentColor" />
+                        <path d="M4 17l-2 3" />
+                        <path d="M17 14h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2" />
+                        <path d="M10 4V2" />
+                        <path d="M13 5L15 3" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-dinogreen-700 to-dinogreen-500 bg-clip-text text-transparent">Slang Saurus</span>
+                    <span class="block text-xs font-medium text-dinogreen-600">Kamus Gaul Zaman Now</span>
+                </div>
+            </a>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openModal()" class="flex items-center gap-2 bg-dinogreen-500 hover:bg-dinogreen-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-dinogreen-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-sm sm:text-base">
+                    <i class="fa-solid fa-plus-circle"></i>
+                    <span>Tambah Slang</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative overflow-hidden pt-12 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-dinogreen-50/60 to-white">
+            <!-- Decorative background blobs -->
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-dinogreen-200/30 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 -right-24 w-96 h-96 bg-dinogreen-300/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-dinogreen-100 text-dinogreen-800 font-semibold text-xs sm:text-sm mb-6 shadow-sm">
+                    <i class="fa-solid fa-fire text-orange-500"></i>
+                    <span>Update Kosakata Gaul Setiap Hari!</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 tracking-tight mb-6 leading-tight">
+                    Temukan Arti Bahasa Gaul <br class="hidden sm:inline">di <span class="bg-gradient-to-r from-dinogreen-600 to-dinogreen-500 bg-clip-text text-transparent">Slang Saurus</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+                    Jangan sampai dibilang "kuno" kayak fosil! Cari tahu arti kata-kata gaul, gen-z, dan millenial paling up-to-date di sini dengan mudah.
+                </p>
+
+                <!-- Search Bar Container -->
+                <div class="max-w-2xl mx-auto relative shadow-xl shadow-dinogreen-500/10 rounded-2xl bg-white p-2 border border-dinogreen-100 flex items-center">
+                    <div class="pl-4 text-dinogreen-500 text-xl">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" id="searchInput" oninput="filterSlang()" placeholder="Cari kata slang (contoh: Spill, Mager, Sigma...)" class="w-full px-4 py-3 bg-transparent text-slate-700 placeholder-slate-400 font-medium focus:outline-none text-base sm:text-lg">
+                    <button onclick="clearSearch()" id="clearBtn" class="hidden px-3 text-slate-400 hover:text-slate-600 transition-colors">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                    <div class="hidden sm:block bg-dinogreen-100 text-dinogreen-700 text-xs font-bold px-3 py-1.5 rounded-xl mr-1">
+                        Instant Search
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+                    <button onclick="filterCategory('All')" class="cat-btn active-cat px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-dinogreen-500 text-white shadow-sm transition-all">
+                        Semua 🦖
+                    </button>
+                    <button onclick="filterCategory('Gen Z')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-dinogreen-700 border border-dinogreen-200 hover:bg-dinogreen-50 transition-all">
+                        Gen Z ⚡
+                    </button>
+                    <button onclick="filterCategory('Sosmed')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-dinogreen-700 border border-dinogreen-200 hover:bg-dinogreen-50 transition-all">
+                        Sosmed 💬
+                    </button>
+                    <button onclick="filterCategory('Millenial')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-dinogreen-700 border border-dinogreen-200 hover:bg-dinogreen-50 transition-all">
+                        Millenial ☕
+                    </button>
+                    <button onclick="filterCategory('Gaming')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-dinogreen-700 border border-dinogreen-200 hover:bg-dinogreen-50 transition-all">
+                        Gaming 🎮
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center gap-3">
+                    <span>Daftar Slang</span>
+                    <span id="resultCount" class="text-sm font-semibold bg-dinogreen-100 text-dinogreen-700 px-3 py-1 rounded-full">0 Kata</span>
+                </h2>
+            </div>
+
+            <!-- No Results State -->
+            <div id="noResults" class="hidden text-center py-16 bg-white rounded-3xl border border-dinogreen-100 shadow-sm p-8">
+                <div class="w-20 h-20 bg-dinogreen-50 text-dinogreen-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                    <i class="fa-solid fa-ghost"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Duh, Slang Nggak Ketemu!</h3>
+                <p class="text-slate-500 max-w-md mx-auto mb-6">Kata yang kamu cari belum ada di database fosil kita. Coba cari kata lain atau kontribusikan sekarang!</p>
+                <button onclick="openModal()" class="bg-dinogreen-500 hover:bg-dinogreen-600 text-white font-semibold px-6 py-2.5 rounded-full shadow-md transition-all">
+                    Tambahkan Kata Ini
+                </button>
+            </div>
+
+            <!-- Cards Grid -->
+            <div id="slangGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will inject cards here -->
+            </div>
+        </section>
+    </main>
+
+    <div id="slangModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm transition-opacity opacity-0 pointer-events-none">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-dinogreen-100 transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-dinogreen-100 text-dinogreen-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">Sumbang Slang Baru</h3>
+                        <p class="text-xs text-slate-500">Bantu update kamus prasejarah kita!</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form id="submitSlangForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Kata Slang</label>
+                    <input type="text" id="newWord" required placeholder="Contoh: Sigma, Anjay, Delulu..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-dinogreen-500 focus:ring-2 focus:ring-dinogreen-500/20 focus:outline-none transition-all font-medium text-slate-800">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Kategori</label>
+                        <select id="newCategory" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-dinogreen-500 focus:ring-2 focus:ring-dinogreen-500/20 focus:outline-none transition-all font-medium text-slate-800 bg-white">
+                            <option value="Gen Z">Gen Z</option>
+                            <option value="Sosmed">Sosmed</option>
+                            <option value="Millenial">Millenial</option>
+                            <option value="Gaming">Gaming</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Kontributor (Opsional)</label>
+                        <input type="text" id="newAuthor" placeholder="Nama kamu..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-dinogreen-500 focus:ring-2 focus:ring-dinogreen-500/20 focus:outline-none transition-all font-medium text-slate-800">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Arti / Makna</label>
+                    <textarea id="newMeaning" required rows="2" placeholder="Jelaskan artinya secara singkat dan jelas..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-dinogreen-500 focus:ring-2 focus:ring-dinogreen-500/20 focus:outline-none transition-all font-medium text-slate-800 resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Contoh Penggunaan</label>
+                    <textarea id="newExample" required rows="2" placeholder="Contoh kalimat penggunaan sehari-hari..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-dinogreen-500 focus:ring-2 focus:ring-dinogreen-500/20 focus:outline-none transition-all font-medium text-slate-800 resize-none"></textarea>
+                </div>
+
+                <div class="pt-4 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold transition-all text-sm">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-dinogreen-500 hover:bg-dinogreen-600 text-white font-semibold shadow-lg shadow-dinogreen-500/25 transition-all text-sm">
+                        Kirim Slang 🚀
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-dinogreen-100 py-10 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-dinogreen-500 text-white flex items-center justify-center font-bold">
+                    🦖
+                </div>
+                <div>
+                    <p class="font-bold text-slate-800">Slang Saurus © 2026</p>
+                    <p class="text-xs text-slate-500">Kamus gaul terlengkap anti punah.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">Dibuat dengan 💚 untuk anak gaul Indonesia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initial database of Slang words
+        let slangData = [
+            {
+                id: 1,
+                word: "Spill",
+                category: "Sosmed",
+                meaning: "Membeberkan rahasia, gosip, atau informasi terbaru yang seru.",
+                example: "Jangan dighosting terus dong, cepetan spill cerita lengkapnya!",
+                author: "Admin Dino"
+            },
+            {
+                id: 2,
+                word: "Mager",
+                category: "Millenial",
+                meaning: "Singkatan dari 'males gerak', kondisi di mana seseorang malas melakukan aktivitas fisik.",
+                example: "Mau beli makan di luar tapi ujan, mager banget rasanya.",
+                author: "FossilKing"
+            },
+            {
+                id: 3,
+                word: "Sigma",
+                category: "Gen Z",
+                meaning: "Istilah untuk pria mandiri, keren, berkharisma tinggi, dan tidak bergantung pada validasi sosial.",
+                example: "Wah si doi kerja sendiri sambil kuliah, sigma male banget.",
+                author: "Rauf"
+            },
+            {
+                id: 4,
+                word: "Delulu",
+                category: "Gen Z",
+                meaning: "Singkatan dari 'delusional', percaya pada sesuatu atau khayalan yang tidak nyata (biasanya soal idol atau crush).",
+                example: "Udah deh berhenti jadi delulu, dia kan udah punya pacar.",
+                author: "Siti"
+            },
+            {
+                id: 5,
+                word: "Gaskeun",
+                category: "Gaming",
+                meaning: "Ajakan atau dorongan semangat untuk segera melakukan sesuatu tanpa ragu-ragu.",
+                example: "Lobi udah ready nih, gaskeun mabar rank sampai Mythic!",
+                author: "Budi Gamer"
+            },
+            {
+                id: 6,
+                word: "OOT",
+                category: "Sosmed",
+                meaning: "Singkatan dari 'Out of Topic', digunakan ketika pembahasan keluar dari topik utama.",
+                example: "Maaf OOT, tapi jaket yang kamu pake beli di mana ya?",
+                author: "Dina"
+            },
+            {
+                id: 7,
+                word: "FYP",
+                category: "Sosmed",
+                meaning: "For Your Page, halaman utama rekomendasi di TikTok yang sering jadi target kreator agar kontennya viral.",
+                example: "Asyik banget video kucing aku kemarin masuk FYP TikTok!",
+                author: "Andi"
+            },
+            {
+                id: 8,
+                word: "NPC",
+                category: "Gaming",
+                meaning: "Non-Player Character, dipakai untuk menyindir orang yang bertindak kaku, monoton, atau kurang inisiatif.",
+                example: "Jalan di mal rame banget kayak NPC jalan otomatis.",
+                author: "Reyhan"
+            }
+        ];
+
+        let currentCategory = 'All';
+
+        // Render cards on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSlangCards(slangData);
+        });
+
+        // Render cards function
+        function renderSlangCards(data) {
+            const grid = document.getElementById('slangGrid');
+            const noResults = document.getElementById('noResults');
+            const resultCount = document.getElementById('resultCount');
+            
+            grid.innerHTML = '';
+            resultCount.textContent = `${data.length} Kata`;
+
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = `card-hover bg-white rounded-3xl p-6 border border-dinogreen-100 flex flex-col justify-between shadow-sm relative overflow-hidden`;
+                
+                // Badge color based on category
+                let badgeClass = 'bg-dinogreen-50 text-dinogreen-700 border border-dinogreen-200';
+                if(item.category === 'Gen Z') badgeClass = 'bg-purple-50 text-purple-700 border border-purple-200';
+                if(item.category === 'Sosmed') badgeClass = 'bg-sky-50 text-sky-700 border border-sky-200';
+                if(item.category === 'Gaming') badgeClass = 'bg-amber-50 text-amber-700 border border-amber-200';
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full ${badgeClass}">${item.category}</span>
+                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-user-pen mr-1"></i>${item.author || 'Anonim'}</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-slate-800 tracking-tight mb-2">${item.word}</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">${item.meaning}</p>
+                    </div>
+                    <div class="bg-dinogreen-50/50 rounded-2xl p-4 border border-dinogreen-100/60 mt-2">
+                        <p class="text-xs font-semibold text-dinogreen-800 mb-1"><i class="fa-solid fa-quote-left mr-1 opacity-70"></i> Contoh Kalimat:</p>
+                        <p class="text-xs text-slate-600 italic">"${item.example}"</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Search Filter
+        function filterSlang() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clearBtn');
+            
+            if(query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            let filtered = slangData.filter(item => {
+                const matchesQuery = item.word.toLowerCase().includes(query) || item.meaning.toLowerCase().includes(query);
+                const matchesCat = currentCategory === 'All' || item.category === currentCategory;
+                return matchesQuery && matchesCat;
+            });
+
+            renderSlangCards(filtered);
+        }
+
+        // Clear Search
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearBtn').classList.add('hidden');
+            filterCategory(currentCategory);
+        }
+
+        // Category Filter
+        function filterCategory(cat) {
+            currentCategory = cat;
+            
+            // Update active button styling
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if(btn.textContent.includes(cat) || (cat === 'All' && btn.textContent.includes('Semua'))) {
+                    btn.className = "cat-btn active-cat px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-dinogreen-500 text-white shadow-sm transition-all";
+                } else {
+                    btn.className = "cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-dinogreen-700 border border-dinogreen-200 hover:bg-dinogreen-50 transition-all";
+                }
+            });
+
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            let filtered = slangData.filter(item => {
+                const matchesQuery = item.word.toLowerCase().includes(query) || item.meaning.toLowerCase().includes(query);
+                const matchesCat = currentCategory === 'All' || item.category === currentCategory;
+                return matchesQuery && matchesCat;
+            });
+
+            renderSlangCards(filtered);
+        }
+
+        // Modal Controls
+        function openModal() {
+            const modal = document.getElementById('slangModal');
+            modal.classList.remove('hidden');
+            modal.classList.remove('pointer-events-none');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('modalContent').classList.remove('scale-95');
+                document.getElementById('modalContent').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('slangModal');
+            modal.classList.add('opacity-0');
+            document.getElementById('modalContent').classList.remove('scale-100');
+            document.getElementById('modalContent').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.add('pointer-events-none');
+                document.getElementById('submitSlangForm').reset();
+            }, 300);
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const word = document.getElementById('newWord').value.trim();
+            const category = document.getElementById('newCategory').value;
+            const author = document.getElementById('newAuthor').value.trim() || 'Dino Friend';
+            const meaning = document.getElementById('newMeaning').value.trim();
+            const example = document.getElementById('newExample').value.trim();
+
+            const newEntry = {
+                id: slangData.length + 1,
+                word: word,
+                category: category,
+                meaning: meaning,
+                example: example,
+                author: author
+            };
+
+            slangData.unshift(newEntry);
+            closeModal();
+            filterCategory(currentCategory);
+
+            // Show simple toast feedback
+            showToast(`Yeay! Kata "${word}" berhasil ditambahkan ke Slang Saurus! 🦖`);
+        }
+
+        // Toast Feedback Notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-6 right-6 z-50 bg-slate-800 text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 font-medium text-sm";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-dinogreen-400 text-lg"></i><span>${message}</span>`;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-20');
+                toast.classList.remove('opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20');
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
