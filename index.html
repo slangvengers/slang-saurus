@@ -154,21 +154,58 @@
         </div>
     </div>
 
-    <!-- MODAL INFO DEVELOPER -->
+    <!-- MODAL INFO DEVELOPER & TIM SLANGVENGERS -->
     <div id="devModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scroll">
             <button onclick="closeDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold">✕</button>
             <div class="text-center mb-4">
                 <span class="text-3xl dino-animated">🦖✨</span>
                 <h3 class="text-lg font-bold text-[#1b4332] mt-2">Tentang Slang Saurus</h3>
             </div>
-            <div class="text-xs text-slate-600 space-y-2 leading-relaxed">
+            <div class="text-xs text-slate-600 space-y-3 leading-relaxed">
                 <p><strong>Slang Saurus</strong> adalah platform kamus digital interaktif yang mengarsipkan berbagai istilah bahasa gaul dan slang terkini.</p>
-                <p>Dikembangkan oleh kelompok <strong>Slangvengers</strong>, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
-                <div class="bg-[#d8f3dc] p-3 rounded-xl border border-emerald-100 mt-3 text-[#1b4332] text-center">
-                    <p class="font-semibold">Karya Kreatif Slangvengers</p>
-                    <p class="text-[11px] opacity-80">Eksplorasi Bahasa Gaul & Slang Kekinian</p>
+                <p>Dikembangkan secara kreatif oleh tim <strong>Slangvengers</strong>, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
+                
+                <!-- BAGIAN KARTU TIM SLANGVENGERS -->
+                <div class="mt-4 pt-3 border-t border-slate-100">
+                    <p class="font-bold text-[#1b4332] text-center mb-3">✨ Tim Kreatif Slangvengers ✨</p>
+                    
+                    <div class="space-y-3">
+                        <!-- Anggota 1 (Sementara) -->
+                        <div class="bg-[#d8f3dc]/50 p-3.5 rounded-xl border border-emerald-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <p class="font-bold text-[#1b4332]">Nama Teman 1</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Kurator Data & Desain</p>
+                            </div>
+                            <a href="https://instagram.com/username_teman1" target="_blank" class="self-start sm:self-center bg-[#2d6a4f] hover:bg-[#25573f] text-white text-[11px] px-3 py-1.5 rounded-lg font-medium transition flex items-center space-x-1">
+                                <span>📸 Instagram</span>
+                            </a>
+                        </div>
+
+                        <!-- Anggota 2 (Sementara) -->
+                        <div class="bg-[#d8f3dc]/50 p-3.5 rounded-xl border border-emerald-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <p class="font-bold text-[#1b4332]">Nama Teman 2</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Developer & Teknis Web</p>
+                            </div>
+                            <a href="https://instagram.com/username_teman2" target="_blank" class="self-start sm:self-center bg-[#2d6a4f] hover:bg-[#25573f] text-white text-[11px] px-3 py-1.5 rounded-lg font-medium transition flex items-center space-x-1">
+                                <span>📸 Instagram</span>
+                            </a>
+                        </div>
+
+                        <!-- Anggota 3 (Aneyla) -->
+                        <div class="bg-[#d8f3dc]/50 p-3.5 rounded-xl border border-emerald-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <p class="font-bold text-[#1b4332]">Aneyla</p>
+                                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">Veronika Aneyla Revalina adalah perempuan bertahun kelahiran 2007 yang supel dan suka mencoba banyak hal. Ia gemar menulis, membaca buku, bernyanyi, menonton film, dan pastinya berhalusinasi. Statusnya mahasiswa yang hidup dalam keluarga kecil sederhana pun bahagia. Ia kini tengah berkuliah di Kampus Sanata Dharma. Kalian bisa menemuinya di Wattpad, Instagram, sekaligus Youtube untuk mengenalnya lebih jauh.</p>
+                            </div>
+                            <a href="https://instagram.com/aneylarevaa_" target="_blank" class="self-start sm:self-center bg-[#2d6a4f] hover:bg-[#25573f] text-white text-[11px] px-3 py-1.5 rounded-lg font-medium transition flex items-center space-x-1 shrink-0">
+                                <span>📸 Instagram</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             <div class="mt-5 text-center">
                 <button onclick="closeDevModal()" class="bg-[#2d6a4f] hover:bg-[#25573f] text-white text-xs px-4 py-2 rounded-xl font-medium transition">Mengerti</button>
