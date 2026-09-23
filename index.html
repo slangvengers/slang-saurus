@@ -26,6 +26,15 @@
             background-color: #cbd5e1;
             border-radius: 4px;
         }
+        /* Animasi Maskot Dino Bergerak */
+        @keyframes dinoBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(-5deg); }
+        }
+        .dino-animated {
+            display: inline-block;
+            animation: dinoBounce 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col justify-between">
@@ -51,9 +60,9 @@
                     </div>
                 </div>
 
-                <!-- Judul & Maskot -->
+                <!-- Judul & Maskot Bergerak -->
                 <div class="flex items-center space-x-2">
-                    <span class="text-2xl">🦖</span>
+                    <span class="text-2xl dino-animated">🦖</span>
                     <h1 class="text-lg md:text-xl font-bold tracking-wide">Slang Saurus</h1>
                 </div>
             </div>
@@ -100,7 +109,7 @@
 
         <!-- PESAN KETIKA KATA TIDAK DITEMUKAN -->
         <div id="emptyState" class="hidden text-center py-12">
-            <span class="text-4xl">🦕</span>
+            <span class="text-4xl dino-animated">🦕</span>
             <p class="text-sm text-slate-500 mt-2">Duh, kata slang yang kamu cari belum nemu nih di fosil kami!</p>
         </div>
     </main>
@@ -108,8 +117,8 @@
     <!-- FOOTER -->
     <footer class="bg-[#1b4332] text-emerald-100 text-xs py-4 mt-8">
         <div class="max-w-4xl mx-auto px-4 text-center space-y-1">
-            <p class="font-medium">Slang Saurus &bull; Universitas Sanata Dharma</p>
-            <p class="text-emerald-300">&copy; 2026 Pendidikan Bahasa Inggris. All rights reserved.</p>
+            <p class="font-medium">Slang Saurus &bull; Slangvengers</p>
+            <p class="text-emerald-300">&copy; 2026 All rights reserved.</p>
         </div>
     </footer>
 
@@ -150,15 +159,15 @@
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
             <button onclick="closeDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold">✕</button>
             <div class="text-center mb-4">
-                <span class="text-3xl">🦖✨</span>
+                <span class="text-3xl dino-animated">🦖✨</span>
                 <h3 class="text-lg font-bold text-[#1b4332] mt-2">Tentang Slang Saurus</h3>
             </div>
             <div class="text-xs text-slate-600 space-y-2 leading-relaxed">
                 <p><strong>Slang Saurus</strong> adalah platform kamus digital interaktif yang mengarsipkan berbagai istilah bahasa gaul dan slang terkini.</p>
-                <p>Dikembangkan untuk memenuhi eksplorasi kreatif kebahasaan, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
-                <div class="bg-[#d8f3dc] p-3 rounded-xl border border-emerald-100 mt-3 text-[#1b4332]">
-                    <p class="font-semibold">Program Studi Pendidikan Bahasa Inggris</p>
-                    <p class="text-[11px] opacity-80">Universitas Sanata Dharma Yogyakarta</p>
+                <p>Dikembangkan oleh kelompok <strong>Slangvengers</strong>, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
+                <div class="bg-[#d8f3dc] p-3 rounded-xl border border-emerald-100 mt-3 text-[#1b4332] text-center">
+                    <p class="font-semibold">Karya Kreatif Slangvengers</p>
+                    <p class="text-[11px] opacity-80">Eksplorasi Bahasa Gaul & Slang Kekinian</p>
                 </div>
             </div>
             <div class="mt-5 text-center">
@@ -212,7 +221,6 @@
         function generateCategoryDropdown(data) {
             const dropdownList = document.getElementById('dropdownCategoryList');
             
-            // Mengambil kategori dari kolom Category / category / Kategori / kategori
             const categories = ['Semua', ...new Set(data.map(item => item.Category || item.category || item.Kategori || item.kategori || 'General'))];
             
             dropdownList.innerHTML = '';
@@ -278,7 +286,6 @@
                 const category = item.Category || item.category || item.Kategori || item.kategori || 'General';
                 const example = item['Example Sentence'] || item.example || item.Contoh || item.contoh || 'Tidak ada contoh.';
                 
-                // Cek status rude (kolom Rude / rude / Status / status)
                 const rudeStatus = (item.Rude || item.rude || item.Status || item.status || '').toLowerCase().trim();
                 const isRude = (rudeStatus === 'rude' || rudeStatus === 'yes' || rudeStatus === 'true');
 
@@ -286,7 +293,6 @@
                 card.className = "bg-white p-5 rounded-2xl shadow-sm border border-emerald-100 hover:shadow-md transition relative flex flex-col justify-between cursor-pointer group overflow-hidden";
                 card.onclick = () => openModal(word, meaning, category, example, isRude);
 
-                // Badge Rude merah di pojok kanan atas
                 const rudeBadgeHTML = isRude ? `<div class="absolute top-0 right-0 bg-[#e63946] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">Rude</div>` : '';
 
                 card.innerHTML = `
