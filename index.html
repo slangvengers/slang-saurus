@@ -174,6 +174,35 @@
             gap: 10px;
         }
 
+        /* Category Filter Buttons Bar */
+        .category-filter-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            scrollbar-width: thin;
+        }
+
+        .cat-btn {
+            background: var(--white);
+            border: 1px solid var(--accent-green);
+            color: var(--primary-green);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--primary-green);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+        }
+
         /* Loading & Empty State */
         .status-message {
             text-align: center;
@@ -434,6 +463,11 @@
             <i class="fa-solid fa-book-open"></i> Daftar Kosakata Slang
         </div>
 
+        <!-- Tombol Filter Kategori Otomatis -->
+        <div id="categoryFilters" class="category-filter-container">
+            <button class="cat-btn active" onclick="filterByCategory('All', this)">Semua</button>
+        </div>
+
         <div id="loading" class="status-message">
             <i class="fa-solid fa-spinner fa-spin"></i> Lagi nyari fosil kata-kata slang dari Spreadsheet...
         </div>
@@ -482,13 +516,14 @@
 
     <!-- Footer -->
     <footer>
-        <p>Made with <span>💚</span> by Slangvengers</p>
+        <p>&copy; 2026 <strong>Slangvengers</strong>. All rights reserved. Made with <span>💚</span> for PBI Universitas Sanata Dharma.</p>
     </footer>
 
     <!-- Script JavaScript -->
     <script>
         const apiUrl = 'https://sheetdb.io/api/v1/g7sh7xm5hher2';
         let allSlangData = [];
+        let currentCategory = 'All';
 
         async function fetchSlangData() {
             const loadingEl = document.getElementById('loading');
@@ -505,6 +540,7 @@
                     return;
                 }
 
+                generateCategoryButtons(allSlangData);
                 displaySlangCards(allSlangData);
             } catch (error) {
                 console.error("Gagal mengambil data:", error);
@@ -512,9 +548,66 @@
             }
         }
 
+        function generateCategoryButtons(data) {
+            const container = document.getElementById('categoryFilters');
+            const categories = new Set();
+            
+            data.forEach(item => {
+                const cat = item.Category || item.category || 'General';
+                categories.add(cat.trim());
+            });
+
+            // Reset ke tombol 'Semua' awal
+            container.innerHTML = `<button class="cat-btn active" onclick="filterByCategory('All', this)">Semua</button>`;
+
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.innerText = cat;
+                btn.onclick = () => filterByCategory(cat, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function filterByCategory(category, btnElement) {
+            currentCategory = category;
+            
+            // Ubah style tombol aktif
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            applyFilters();
+        }
+
+        function filterSlang() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allSlangData.filter(item => {
+                const term = (item.Slang || item.term || '').toLowerCase();
+                const meaning = (item.Meaning || item.meaning || '').toLowerCase();
+                const category = (item.Category || item.category || 'General').trim();
+
+                const matchesSearch = term.includes(keyword) || meaning.includes(keyword);
+                const matchesCategory = (currentCategory === 'All' || category.toLowerCase() === currentCategory.toLowerCase());
+
+                return matchesSearch && matchesCategory;
+            });
+
+            displaySlangCards(filtered);
+        }
+
         function displaySlangCards(data) {
             const gridEl = document.getElementById('slangGrid');
             gridEl.innerHTML = '';
+
+            if (data.length === 0) {
+                gridEl.innerHTML = `<div class="status-message" style="grid-column: 1/-1;">Kata slang yang kamu cari tidak ditemukan! 🦖</div>`;
+                return;
+            }
 
             data.forEach(item => {
                 const term = item.Slang || item.term || 'Tanpa Nama';
@@ -541,16 +634,6 @@
                 `;
                 gridEl.appendChild(card);
             });
-        }
-
-        function filterSlang() {
-            const keyword = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allSlangData.filter(item => {
-                const term = (item.Slang || item.term || '').toLowerCase();
-                const meaning = (item.Meaning || item.meaning || '').toLowerCase();
-                return term.includes(keyword) || meaning.includes(keyword);
-            });
-            displaySlangCards(filtered);
         }
 
         function showSlangDetail(term, meaning, example, category) {
