@@ -2,619 +2,238 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="S7EzvxhXmdVdODCD5W7e6ip5zKEPCYp5DncWeq09fJ0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slang Saurus - Kamus Slang Modern & Gen Z</title>
-    <!-- Google Fonts: Poppins & Fredoka untuk kesan lucu dan modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome untuk Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Slang Saurus 🦖 - Kamus Gaul & Slang Kekinian</title>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="S7EzvxhXmdVdODCD5W7e6ip5zKEPCYp5DncWeq09fJ0" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-color: #f4fbf7;
-            --primary-green: #2d6a4f;
-            --mint-light: #d8f3dc;
-            --mint-card: #e9f5ed;
-            --accent-green: #52b788;
-            --text-main: #1b4332;
-            --text-muted: #4f772d;
-            --white: #ffffff;
-            --shadow: rgba(45, 106, 79, 0.08);
-            --danger-red: #e63946;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: #f4fbf7;
         }
-
-        /* Top Nav / Info Button Bar */
-        .top-bar {
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: flex-end;
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-
-        .info-btn {
-            background: var(--white);
-            color: var(--primary-green);
-            border: 2px solid var(--accent-green);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-family: 'Fredoka', cursive;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px var(--shadow);
-            transition: all 0.2s ease;
-        }
-
-        .info-btn:hover {
-            background: var(--mint-light);
-            transform: translateY(-2px);
-        }
-
-        /* Header & Hero Section */
-        header {
-            background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
-            padding: 20px 20px 40px;
-            text-align: center;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 10px 25px var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .dino-mascot {
-            width: 110px;
-            height: 110px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.15);
-            font-size: 55px;
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        header h1 {
-            font-family: 'Fredoka', cursive;
-            font-size: 2.8rem;
-            color: var(--primary-green);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        header p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        /* Search Bar */
-        .search-box {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 15px 20px 15px 50px;
-            border-radius: 50px;
-            border: 2px solid var(--accent-green);
-            background: var(--white);
-            font-size: 1rem;
-            color: var(--text-main);
-            outline: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            box-shadow: 0 6px 20px rgba(82, 183, 136, 0.3);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-green);
-            font-size: 1.2rem;
-        }
-
-        /* Main Content Layout */
-        main {
-            max-width: 1100px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex: 1;
-        }
-
-        .section-title {
-            font-family: 'Fredoka', cursive;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Category Filter Buttons Bar */
-        .category-filter-container {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            scrollbar-width: thin;
-        }
-
-        .cat-btn {
-            background: var(--white);
-            border: 1px solid var(--accent-green);
-            color: var(--primary-green);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
-
-        .cat-btn:hover, .cat-btn.active {
-            background: var(--primary-green);
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
-        }
-
-        /* Loading & Empty State */
-        .status-message {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
-        /* Grid Kartu Slang */
-        .slang-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .slang-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 6px 20px var(--shadow);
-            border: 1px solid #e2f0e6;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden; /* Biar badge melingkar tidak keluar batas sudut kartu */
-        }
-
-        .slang-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.15);
-            border-color: var(--accent-green);
-        }
-
-        /* Logo Bulat Merah (Rude Badge) di Pojok Kanan Atas */
-        .rude-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--danger-red);
-            color: var(--white);
-            font-family: 'Fredoka', cursive;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 8px 14px 10px 18px;
-            border-bottom-left-radius: 25px;
-            box-shadow: -2px 2px 6px rgba(230, 57, 70, 0.3);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            padding-right: 40px; /* Jarak agar tidak tertutup badge rude */
-        }
-
-        .slang-term {
-            font-family: 'Fredoka', cursive;
-            font-size: 1.4rem;
-            color: var(--primary-green);
-        }
-
-        .slang-category {
-            background: var(--mint-light);
-            color: var(--primary-green);
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .slang-meaning {
-            font-size: 0.95rem;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .slang-example {
-            background: var(--bg-color);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            color: #555;
-            border-left: 3px solid var(--accent-green);
-            font-style: italic;
-        }
-
-        .card-hint {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-align: right;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        /* Modal / Popup Umum */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-box {
-            background: var(--white);
-            width: 90%;
-            max-width: 500px;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-header h3 {
-            font-family: 'Fredoka', cursive;
-            font-size: 1.6rem;
-            color: var(--primary-green);
-        }
-
-        .close-btn {
-            background: var(--mint-light);
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1rem;
-            color: var(--primary-green);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .close-btn:hover {
-            background: var(--accent-green);
-            color: var(--white);
-        }
-
-        .modal-body {
-            font-size: 0.95rem;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .modal-body h4 {
-            font-family: 'Fredoka', cursive;
-            color: var(--primary-green);
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        /* Specific style for Slang Detail Popup */
-        .detail-term {
-            font-family: 'Fredoka', cursive;
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin-bottom: 5px;
-        }
-
-        .detail-category-badge {
-            display: inline-block;
-            background: var(--mint-light);
-            color: var(--primary-green);
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .detail-section-title {
-            font-family: 'Fredoka', cursive;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-
-        .detail-meaning-box {
-            font-size: 1.05rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .detail-example-box {
-            background: var(--bg-color);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: #555;
-            border-left: 4px solid var(--accent-green);
-            font-style: italic;
-        }
-
-        /* Warning Box untuk kata Rude di Modal */
-        .rude-warning-box {
-            background: #fdf0f1;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .rude-warning-box i {
-            color: var(--danger-red);
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: var(--white);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid #e2f0e6;
-            margin-top: 50px;
-        }
-
-        footer span {
-            color: #2d6a4f;
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between">
 
-    <!-- Top Navigation Bar (Tombol Info) -->
-    <div class="top-bar">
-        <button class="info-btn" onclick="toggleInfoModal(true)">
-            <i class="fa-solid fa-circle-info"></i> Tentang Web & Developer
-        </button>
-    </div>
-
-    <!-- Header & Hero -->
-    <header>
-        <div class="hero-container">
-            <div class="dino-mascot">
-                🦖
-            </div>
-            <h1>Slang Saurus</h1>
-            <p>Your ultimate digital companion for modern English expressions.</p>
+    <!-- HEADER & NAVBAR -->
+    <header class="bg-[#2d6a4f] text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Cari kata slang atau artinya di sini..." onkeyup="filterSlang()">
+            <!-- BAGIAN KIRI: Tombol Hamburger & Judul Web -->
+            <div class="flex items-center space-x-3 relative">
+                <!-- Tombol Menu Hamburger -->
+                <button onclick="toggleCategoryMenu()" class="p-2 rounded-lg hover:bg-[#25573f] transition focus:outline-none focus:ring-2 focus:ring-[#52b788]" title="Pilih Kategori">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- MENU DROPDOWN KATEGORI -->
+                <div id="categoryMenu" class="hidden absolute left-0 top-12 bg-white text-slate-800 shadow-xl rounded-2xl p-3 w-64 border border-emerald-100 z-50">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-2">Filter Kategori</div>
+                    <div id="dropdownCategoryList" class="flex flex-col space-y-1 max-h-60 overflow-y-auto custom-scroll">
+                        <!-- Tombol kategori akan di-generate otomatis di sini -->
+                    </div>
+                </div>
+
+                <!-- Judul & Maskot -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">🦖</span>
+                    <h1 class="text-lg md:text-xl font-bold tracking-wide">Slang Saurus</h1>
+                </div>
+            </div>
+
+            <!-- BAGIAN KANAN: Tombol Info Developer -->
+            <div>
+                <button onclick="openDevModal()" class="text-xs bg-[#25573f] hover:bg-[#1b4332] px-3 py-1.5 rounded-full font-medium transition border border-[#52b788]/30">
+                    Info Web 💡
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Content Area -->
-    <main>
-        <div class="section-title">
-            <i class="fa-solid fa-book-open"></i> Daftar Kosakata Slang
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-4xl w-full mx-auto px-4 py-6 flex-grow">
+        
+        <!-- Slogan & Intro -->
+        <div class="text-center mb-6">
+            <h2 class="text-xl md:text-2xl font-bold text-[#1b4332]">Kamus Gaul & Slang Pintar</h2>
+            <p class="text-xs md:text-sm text-slate-600 mt-1">Temukan arti kata-kata gaul, bahasa anak muda, dan tren kekinian di sini!</p>
         </div>
 
-        <!-- Tombol Filter Kategori Otomatis -->
-        <div id="categoryFilters" class="category-filter-container">
-            <button class="cat-btn active" onclick="filterByCategory('All', this)">Semua</button>
+        <!-- SEARCH BAR -->
+        <div class="mb-6 relative max-w-xl mx-auto">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+                🔍
+            </span>
+            <input type="text" id="searchInput" oninput="filterSlang()" placeholder="Cari kata slang atau artinya..." 
+                class="w-full pl-10 pr-4 py-3 bg-white border border-[#52b788]/40 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#52b788] text-sm">
         </div>
 
-        <div id="loading" class="status-message">
-            <i class="fa-solid fa-spinner fa-spin"></i> Lagi nyari fosil kata-kata slang dari Spreadsheet...
+        <!-- STATUS KATEGORI AKTIF -->
+        <div class="flex items-center justify-between mb-4 px-1">
+            <div id="activeCategoryLabel" class="text-xs font-medium text-[#2d6a4f] bg-[#d8f3dc] px-3 py-1 rounded-full">
+                Kategori: Semua Kata
+            </div>
+            <div id="resultCount" class="text-xs text-slate-500">Memuat data...</div>
         </div>
 
-        <div id="slangGrid" class="slang-grid">
-            <!-- Data dari Google Sheets akan masuk otomatis lewat JavaScript di sini -->
+        <!-- KARTU DAFTAR SLANG (GRID) -->
+        <div id="slangContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Data dari SheetDB akan muncul di sini -->
+        </div>
+
+        <!-- PESAN KETIKA KATA TIDAK DITEMUKAN -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <span class="text-4xl">🦕</span>
+            <p class="text-sm text-slate-500 mt-2">Duh, kata slang yang kamu cari belum nemu nih di fosil kami!</p>
         </div>
     </main>
 
-    <!-- Modal / Popup Informasi Web & Developer -->
-    <div id="infoModal" class="modal-overlay" onclick="handleOutsideClick(event, 'infoModal')">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3>Tentang Slang Saurus 🦖</h3>
-                <button class="close-btn" onclick="toggleInfoModal(false)"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body">
-                <h4>📖 Pengantar Web</h4>
-                <p>Slang Saurus adalah website sederhana yang kami kembangkan sebagai sumber belajar siapapun untuk mengerti dan memahami berbagai slang yang sering digunakan di seluruh penjuru dunia (terutama bahasa Inggris). Semoga website ini bisa membantu kalian untuk mengerti tiap arti slang tanpa terkecuali.</p>
-                
-                <h4>👩‍💻 Tentang Developer</h4>
-                <p>Web ini merupakan buah karya kita, mahasiswa PBI yang sama-sama linpro ke mata kuliah Pengembangan Sumber Belajar Digital, dengan bantuan AI untuk menyusun coding rumit hingga terciptalah Slang Saurus ini. Harapannya website ini bisa membantu siapapun yang ingin belajar dan mengerti berbagai slang lebih jauh.</p>
-            </div>
+    <!-- FOOTER -->
+    <footer class="bg-[#1b4332] text-emerald-100 text-xs py-4 mt-8">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-1">
+            <p class="font-medium">Slang Saurus &bull; Universitas Sanata Dharma</p>
+            <p class="text-emerald-300">&copy; 2026 Pendidikan Bahasa Inggris. All rights reserved.</p>
         </div>
-    </div>
-
-    <!-- Modal / Popup Detail Kartu Slang -->
-    <div id="detailModal" class="modal-overlay" onclick="handleOutsideClick(event, 'detailModal')">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3>Detail Slang 🔍</h3>
-                <button class="close-btn" onclick="toggleDetailModal(false)"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body">
-                <div id="modalRudeWarning"></div>
-                <div id="modalTerm" class="detail-term">Kata</div>
-                <div id="modalCategory" class="detail-category-badge">Kategori</div>
-                
-                <div class="detail-section-title">Arti / Definisi:</div>
-                <div id="modalMeaning" class="detail-meaning-box">Arti kata...</div>
-                
-                <div class="detail-section-title">Contoh Penggunaan:</div>
-                <div id="modalExample" class="detail-example-box">"Contoh kalimat..."</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <strong>Slangvengers</strong>. All rights reserved. Made with <span>💚</span> for PBI Universitas Sanata Dharma.</p>
     </footer>
 
-    <!-- Script JavaScript -->
+    <!-- MODAL DETAIL SLANG -->
+    <div id="slangModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative transform transition-all">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg font-bold">✕</button>
+            
+            <div class="flex items-start justify-between mb-2">
+                <h3 id="modalWord" class="text-xl font-bold text-[#1b4332]"></h3>
+                <span id="modalRudeBadge"></span>
+            </div>
+            
+            <div class="mb-4">
+                <span id="modalCategory" class="inline-block text-[10px] font-semibold tracking-wider uppercase bg-[#d8f3dc] text-[#2d6a4f] px-2.5 py-0.5 rounded-md"></span>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-700">
+                <div>
+                    <span class="font-semibold text-xs text-slate-400 uppercase tracking-wider block">Arti / Definisi</span>
+                    <p id="modalMeaning" class="mt-0.5 font-medium"></p>
+                </div>
+                <div>
+                    <span class="font-semibold text-xs text-slate-400 uppercase tracking-wider block">Contoh Penggunaan</span>
+                    <p id="modalExample" class="mt-0.5 italic text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100"></p>
+                </div>
+                <div id="modalRudeWarningBox" class="hidden"></div>
+            </div>
+
+            <div class="mt-6 text-right">
+                <button onclick="closeModal()" class="bg-[#2d6a4f] hover:bg-[#25573f] text-white text-xs px-4 py-2 rounded-xl font-medium transition">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL INFO DEVELOPER -->
+    <div id="devModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold">✕</button>
+            <div class="text-center mb-4">
+                <span class="text-3xl">🦖✨</span>
+                <h3 class="text-lg font-bold text-[#1b4332] mt-2">Tentang Slang Saurus</h3>
+            </div>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed">
+                <p><strong>Slang Saurus</strong> adalah platform kamus digital interaktif yang mengarsipkan berbagai istilah bahasa gaul dan slang terkini.</p>
+                <p>Dikembangkan untuk memenuhi eksplorasi kreatif kebahasaan, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
+                <div class="bg-[#d8f3dc] p-3 rounded-xl border border-emerald-100 mt-3 text-[#1b4332]">
+                    <p class="font-semibold">Program Studi Pendidikan Bahasa Inggris</p>
+                    <p class="text-[11px] opacity-80">Universitas Sanata Dharma Yogyakarta</p>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <button onclick="closeDevModal()" class="bg-[#2d6a4f] hover:bg-[#25573f] text-white text-xs px-4 py-2 rounded-xl font-medium transition">Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const apiUrl = 'https://sheetdb.io/api/v1/g7sh7xm5hher2';
-        let allSlangData = [];
-        let currentCategory = 'All';
+        // Endpoint SheetDB kamu
+        const SHEETDB_API = 'https://sheetdb.io/api/v1/g7sh7xm5hher2';
+
+        let allSlangs = [];
+        let currentCategory = 'Semua';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchSlangData();
+        });
+
+        // Toggle Menu Hamburger Kategori
+        function toggleCategoryMenu() {
+            const menu = document.getElementById('categoryMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Tutup menu kalau klik di luar area menu
+        window.addEventListener('click', function(e) {
+            const menu = document.getElementById('categoryMenu');
+            const btn = document.querySelector('header button[onclick="toggleCategoryMenu()"]');
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
 
         async function fetchSlangData() {
-            const loadingEl = document.getElementById('loading');
-            const gridEl = document.getElementById('slangGrid');
-
             try {
-                let response = await fetch(apiUrl);
-                allSlangData = await response.json();
+                const response = await fetch(SHEETDB_API);
+                const data = await response.json();
+                allSlangs = data;
                 
-                loadingEl.style.display = 'none';
-
-                if (allSlangData.length === 0) {
-                    gridEl.innerHTML = `<div class="status-message" style="grid-column: 1/-1;">Belum ada kosakata di spreadsheet kamu nih!</div>`;
-                    return;
-                }
-
-                generateCategoryButtons(allSlangData);
-                displaySlangCards(allSlangData);
+                generateCategoryDropdown(data);
+                displaySlangs(data);
             } catch (error) {
-                console.error("Gagal mengambil data:", error);
-                loadingEl.innerHTML = `<span style="color: #e63946;">Gagal memuat data dari spreadsheet. Coba cek koneksi atau format API-nya ya!</span>`;
+                console.error('Gagal mengambil data:', error);
+                document.getElementById('resultCount').innerText = 'Gagal memuat data sheet.';
             }
         }
 
-        function generateCategoryButtons(data) {
-            const container = document.getElementById('categoryFilters');
-            const categories = new Set();
+        // Generate Menu Dropdown Kategori secara Dinamis dari Sheet
+        function generateCategoryDropdown(data) {
+            const dropdownList = document.getElementById('dropdownCategoryList');
             
-            data.forEach(item => {
-                const cat = item.Category || item.category || 'General';
-                categories.add(cat.trim());
-            });
-
-            container.innerHTML = `<button class="cat-btn active" onclick="filterByCategory('All', this)">Semua</button>`;
-
+            // Mengambil kategori dari kolom Category / category / Kategori / kategori
+            const categories = ['Semua', ...new Set(data.map(item => item.Category || item.category || item.Kategori || item.kategori || 'General'))];
+            
+            dropdownList.innerHTML = '';
+            
             categories.forEach(cat => {
                 const btn = document.createElement('button');
-                btn.className = 'cat-btn';
+                btn.className = `text-left px-3 py-2 rounded-xl text-xs font-medium transition ${currentCategory === cat ? 'bg-[#2d6a4f] text-white font-semibold' : 'text-slate-700 hover:bg-emerald-50'}`;
                 btn.innerText = cat;
-                btn.onclick = () => filterByCategory(cat, btn);
-                container.appendChild(btn);
+                btn.onclick = () => {
+                    filterByCategory(cat);
+                    document.getElementById('categoryMenu').classList.add('hidden');
+                };
+                dropdownList.appendChild(btn);
             });
         }
 
-        function filterByCategory(category, btnElement) {
+        function filterByCategory(category) {
             currentCategory = category;
-            
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            applyFilters();
+            document.getElementById('activeCategoryLabel').innerText = `Kategori: ${category}`;
+            generateCategoryDropdown(allSlangs);
+            filterSlang();
         }
 
         function filterSlang() {
@@ -624,111 +243,105 @@
         function applyFilters() {
             const keyword = document.getElementById('searchInput').value.toLowerCase();
             
-            const filtered = allSlangData.filter(item => {
-                const term = (item.Slang || item.term || '').toLowerCase();
-                const meaning = (item.Meaning || item.meaning || '').toLowerCase();
-                const category = (item.Category || item.category || 'General').trim();
-
-                const matchesSearch = term.includes(keyword) || meaning.includes(keyword);
-                const matchesCategory = (currentCategory === 'All' || category.toLowerCase() === currentCategory.toLowerCase());
-
-                return matchesSearch && matchesCategory;
+            const filtered = allSlangs.filter(item => {
+                const word = (item.Slang || item.term || item.Kata || item.kata || '').toLowerCase();
+                const meaning = (item.Meaning || item.meaning || item.Arti || item.arti || '').toLowerCase();
+                const category = (item.Category || item.category || item.Kategori || item.kategori || 'General').trim();
+                
+                const matchesCategory = (currentCategory === 'Semua' || category.toLowerCase() === currentCategory.toLowerCase());
+                const matchesKeyword = word.includes(keyword) || meaning.includes(keyword);
+                
+                return matchesCategory && matchesKeyword;
             });
 
-            displaySlangCards(filtered);
+            displaySlangs(filtered);
         }
 
-        function displaySlangCards(data) {
-            const gridEl = document.getElementById('slangGrid');
-            gridEl.innerHTML = '';
+        function displaySlangs(data) {
+            const container = document.getElementById('slangContainer');
+            const emptyState = document.getElementById('emptyState');
+            const resultCount = document.getElementById('resultCount');
+            
+            container.innerHTML = '';
+            resultCount.innerText = `Menampilkan ${data.length} kata slang`;
 
             if (data.length === 0) {
-                gridEl.innerHTML = `<div class="status-message" style="grid-column: 1/-1;">Kata slang yang kamu cari tidak ditemukan! 🦖</div>`;
+                emptyState.classList.remove('hidden');
                 return;
+            } else {
+                emptyState.classList.add('hidden');
             }
 
             data.forEach(item => {
-                const term = item.Slang || item.term || 'Tanpa Nama';
-                const meaning = item.Meaning || item.meaning || '-';
-                const example = item['Example Sentence'] || item.example || '-';
-                const category = item.Category || item.category || 'General';
+                const word = item.Slang || item.term || item.Kata || item.kata || 'Tanpa Nama';
+                const meaning = item.Meaning || item.meaning || item.Arti || item.arti || '-';
+                const category = item.Category || item.category || item.Kategori || item.kategori || 'General';
+                const example = item['Example Sentence'] || item.example || item.Contoh || item.contoh || 'Tidak ada contoh.';
                 
-                // Mendeteksi kolom Rude (bisa dinamai Rude, rude, status, dll di spreadsheet)
-                const rudeValue = (item.Rude || item.rude || '').toString().trim().toLowerCase();
-                const isRude = (rudeValue === 'rude' || rudeValue === 'yes' || rudeValue === 'true');
+                // Cek status rude (kolom Rude / rude / Status / status)
+                const rudeStatus = (item.Rude || item.rude || item.Status || item.status || '').toLowerCase().trim();
+                const isRude = (rudeStatus === 'rude' || rudeStatus === 'yes' || rudeStatus === 'true');
 
                 const card = document.createElement('div');
-                card.className = 'slang-card';
-                card.onclick = () => showSlangDetail(term, meaning, example, category, isRude);
+                card.className = "bg-white p-5 rounded-2xl shadow-sm border border-emerald-100 hover:shadow-md transition relative flex flex-col justify-between cursor-pointer group overflow-hidden";
+                card.onclick = () => openModal(word, meaning, category, example, isRude);
 
-                // Buat HTML badge jika kata tersebut bernilai rude
-                const rudeBadgeHTML = isRude ? `<div class="rude-badge">Rude</div>` : '';
+                // Badge Rude merah di pojok kanan atas
+                const rudeBadgeHTML = isRude ? `<div class="absolute top-0 right-0 bg-[#e63946] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">Rude</div>` : '';
 
                 card.innerHTML = `
                     ${rudeBadgeHTML}
                     <div>
-                        <div class="card-header">
-                            <span class="slang-term">${term}</span>
-                            <span class="slang-category">${category}</span>
+                        <div class="flex items-start justify-between pr-8">
+                            <span class="text-[10px] font-semibold uppercase tracking-wider text-[#2d6a4f] bg-[#d8f3dc] px-2.5 py-0.5 rounded-full">${category}</span>
                         </div>
-                        <div class="slang-meaning">${meaning}</div>
+                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-[#2d6a4f] transition mt-2">${word}</h3>
+                        <p class="text-xs text-slate-600 mt-1 line-clamp-2">${meaning}</p>
                     </div>
-                    <div>
-                        <div class="slang-example">"${example}"</div>
-                        <div class="card-hint"><i class="fa-regular fa-hand-pointer"></i> Klik untuk lihat detail</div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-[#2d6a4f] font-medium">
+                        <span>Ketuk untuk detail &rarr;</span>
                     </div>
                 `;
-                gridEl.appendChild(card);
+                container.appendChild(card);
             });
         }
 
-        function showSlangDetail(term, meaning, example, category, isRude) {
-            document.getElementById('modalTerm').innerText = term;
-            document.getElementById('modalCategory').innerText = category;
+        function openModal(word, meaning, category, example, isRude) {
+            document.getElementById('modalWord').innerText = word;
             document.getElementById('modalMeaning').innerText = meaning;
+            document.getElementById('modalCategory').innerText = category;
             document.getElementById('modalExample').innerText = `"${example}"`;
             
-            const warningContainer = document.getElementById('modalRudeWarning');
+            const badgeContainer = document.getElementById('modalRudeBadge');
+            const warningBox = document.getElementById('modalRudeWarningBox');
+
             if (isRude) {
-                warningContainer.innerHTML = `
-                    <div class="rude-warning-box">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div><strong>Peringatan!</strong> Kata ini termasuk bahasa kasar (rude). Jangan dipakai dalam percakapan formal atau sehari-hari!</div>
-                    </div>
-                `;
+                badgeContainer.innerHTML = '<span class="bg-[#e63946] text-white text-xs font-bold px-2.5 py-1 rounded-full">Rude</span>';
+                warningBox.className = "bg-red-50 border border-red-200 p-3 rounded-xl text-red-700 text-xs flex items-center space-x-2 block";
+                warningBox.innerHTML = '<span>⚠️</span><p><strong>Peringatan!</strong> Istilah ini dikategorikan sebagai kata kasar/slang sensitif (*rude*). Jangan digunakan sembarangan!</p>';
             } else {
-                warningContainer.innerHTML = '';
+                badgeContainer.innerHTML = '';
+                warningBox.className = "hidden";
             }
 
-            document.getElementById('detailModal').classList.add('active');
+            document.getElementById('slangModal').classList.remove('hidden');
+            document.getElementById('slangModal').classList.add('flex');
         }
 
-        function toggleDetailModal(open) {
-            const modal = document.getElementById('detailModal');
-            if (open) {
-                modal.classList.add('active');
-            } else {
-                modal.classList.remove('active');
-            }
+        function closeModal() {
+            document.getElementById('slangModal').classList.add('hidden');
+            document.getElementById('slangModal').classList.remove('flex');
         }
 
-        function toggleInfoModal(open) {
-            const modal = document.getElementById('infoModal');
-            if (open) {
-                modal.classList.add('active');
-            } else {
-                modal.classList.remove('active');
-            }
+        function openDevModal() {
+            document.getElementById('devModal').classList.remove('hidden');
+            document.getElementById('devModal').classList.add('flex');
         }
 
-        function handleOutsideClick(event, modalId) {
-            const modal = document.getElementById(modalId);
-            if (event.target === modal) {
-                modal.classList.remove('active');
-            }
+        function closeDevModal() {
+            document.getElementById('devModal').classList.add('hidden');
+            document.getElementById('devModal').classList.remove('flex');
         }
-
-        fetchSlangData();
     </script>
 </body>
 </html>
