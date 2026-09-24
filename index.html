@@ -79,7 +79,7 @@
     <!-- KONTEN UTAMA -->
     <main class="max-w-4xl w-full mx-auto px-4 py-6 flex-grow">
         
-        <!-- Slogan & Intro (Diperbarui) -->
+        <!-- Slogan & Intro -->
         <div class="text-center mb-6">
             <h2 class="text-xl md:text-2xl font-bold text-[#1b4332]">Slang Dictionary</h2>
             <p class="text-xs md:text-sm text-slate-600 mt-1">Your ultimate digital companion for modern English expressions.</p>
@@ -154,69 +154,75 @@
         </div>
     </div>
 
-    <!-- MODAL INFO DEVELOPER & TIM SLANGVENGERS -->
+    <!-- MODAL INFO WEB & DEVELOPER -->
     <div id="devModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scroll">
             <button onclick="closeDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold">✕</button>
+            
             <div class="text-center mb-4">
                 <span class="text-3xl dino-animated">🦖✨</span>
-                <h3 class="text-lg font-bold text-[#1b4332] mt-2">Tentang Slang Saurus</h3>
+                <h3 class="text-base font-bold text-[#1b4332] mt-2">Tentang Slang Saurus</h3>
             </div>
-            <div class="text-xs text-slate-600 space-y-3 leading-relaxed">
-                <p><strong>Slang Saurus</strong> adalah platform kamus digital interaktif yang mengarsipkan berbagai istilah bahasa gaul dan slang terkini.</p>
-                <p>Dikembangkan secara kreatif oleh tim <strong>Slangvengers</strong>, menghubungkan data secara langsung dari Google Sheets menggunakan integrasi SheetDB.</p>
+
+            <!-- BAGIAN 1: INFO WEB -->
+            <div class="text-[11px] text-slate-600 space-y-2 leading-relaxed bg-emerald-50/50 p-3.5 rounded-xl border border-emerald-100">
+                <p>Slangsaurus adalah platform kamus digital interaktif yang menyediakan informasi dari berbagai istilah slang atau bahasa gaul terkini.</p>
+                <p>Dikembangkan oleh Slangvengers dalam rangka mengembangkan sumber belajar digital bagi semua orang yang kesulitan dalam menemukan atau memahami arti dari slang dari berbagai media.</p>
+            </div>
+
+            <!-- BAGIAN 2: INFO DEVELOPER -->
+            <div class="mt-4 pt-3 border-t border-slate-100">
+                <h3 class="text-sm font-bold text-[#1b4332] text-center mb-2">Tentang Developer (Slangvengers)</h3>
+                <p class="text-[11px] text-slate-500 text-center mb-3 leading-relaxed">
+                    Slangvengers adalah 3 mahasiswa aktif Universitas Sanata Dharma program studi Pendidikan Bahasa Inggris yang mengembangkan platform ini dalam rangka membuat proyek dari mata kuliah Pengembangan Sumber Belajar Digital.
+                </p>
+                <p class="text-[10px] text-slate-400 text-center mb-3">Ketuk nama di bawah untuk melihat profil, foto, dan akun Instagram mereka!</p>
                 
-                <!-- BAGIAN KARTU TIM SLANGVENGERS (Accordion) -->
-                <div class="mt-4 pt-3 border-t border-slate-100">
-                    <p class="font-bold text-[#1b4332] text-center mb-3">✨ Tim Kreatif Slangvengers ✨</p>
-                    <p class="text-[11px] text-slate-400 text-center mb-3">Ketuk nama di bawah untuk melihat profil, foto, dan akun Instagram mereka!</p>
-                    
-                    <div class="space-y-2">
-                        <!-- Anggota 1 (Dikosongkan / Menyusul) -->
-                        <div class="bg-[#d8f3dc]/50 rounded-xl border border-emerald-100 overflow-hidden transition">
-                            <button onclick="toggleProfile('profile1')" class="w-full p-3.5 text-left font-bold text-[#1b4332] flex items-center justify-between hover:bg-emerald-100/50 transition">
-                                <span>Anggota 1 (Segera Hadir)</span>
-                                <span id="icon-profile1" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
-                            </button>
-                            <div id="content-profile1" class="hidden px-3.5 pb-3.5 pt-1 border-t border-emerald-100/60 text-slate-600 space-y-2">
-                                <p class="text-[11px] italic text-slate-400">Profil menyusul...</p>
-                            </div>
+                <div class="space-y-2">
+                    <!-- Anggota 1 (Dikosongkan / Menyusul) -->
+                    <div class="bg-white rounded-xl border border-emerald-100 overflow-hidden transition shadow-xs">
+                        <button onclick="toggleProfile('profile1')" class="w-full p-3 text-left font-bold text-[#1b4332] text-xs flex items-center justify-between hover:bg-emerald-50 transition">
+                            <span>Anggota 1 (Segera Hadir)</span>
+                            <span id="icon-profile1" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
+                        </button>
+                        <div id="content-profile1" class="hidden px-3 pb-3 pt-1 border-t border-slate-100 text-slate-600 space-y-2">
+                            <p class="text-[11px] italic text-slate-400">Profil menyusul...</p>
                         </div>
+                    </div>
 
-                        <!-- Anggota 2 (Dikosongkan / Menyusul) -->
-                        <div class="bg-[#d8f3dc]/50 rounded-xl border border-emerald-100 overflow-hidden transition">
-                            <button onclick="toggleProfile('profile2')" class="w-full p-3.5 text-left font-bold text-[#1b4332] flex items-center justify-between hover:bg-emerald-100/50 transition">
-                                <span>Anggota 2 (Segera Hadir)</span>
-                                <span id="icon-profile2" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
-                            </button>
-                            <div id="content-profile2" class="hidden px-3.5 pb-3.5 pt-1 border-t border-emerald-100/60 text-slate-600 space-y-2">
-                                <p class="text-[11px] italic text-slate-400">Profil menyusul...</p>
-                            </div>
+                    <!-- Anggota 2 (Dikosongkan / Menyusul) -->
+                    <div class="bg-white rounded-xl border border-emerald-100 overflow-hidden transition shadow-xs">
+                        <button onclick="toggleProfile('profile2')" class="w-full p-3 text-left font-bold text-[#1b4332] text-xs flex items-center justify-between hover:bg-emerald-50 transition">
+                            <span>Anggota 2 (Segera Hadir)</span>
+                            <span id="icon-profile2" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
+                        </button>
+                        <div id="content-profile2" class="hidden px-3 pb-3 pt-1 border-t border-slate-100 text-slate-600 space-y-2">
+                            <p class="text-[11px] italic text-slate-400">Profil menyusul...</p>
                         </div>
+                    </div>
 
-                        <!-- Anggota 3 (Aneyla) -->
-                        <div class="bg-[#d8f3dc]/50 rounded-xl border border-emerald-100 overflow-hidden transition">
-                            <button onclick="toggleProfile('profile3')" class="w-full p-3.5 text-left font-bold text-[#1b4332] flex items-center justify-between hover:bg-emerald-100/50 transition">
-                                <span>Aneyla</span>
-                                <span id="icon-profile3" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
-                            </button>
-                            <div id="content-profile3" class="hidden px-3.5 pb-3.5 pt-1 border-t border-emerald-100/60 text-slate-600 space-y-3">
-                                <!-- Foto Profil Aneyla menggunakan Raw Link GitHub -->
-                                <div class="flex justify-center my-2">
-                                    <img src="https://raw.githubusercontent.com/slangvengers/slang-saurus/main/Aneyla_Profile.jpg" alt="Aneyla" class="w-32 h-32 object-cover rounded-xl shadow-md border-2 border-emerald-200">
-                                </div>
-                                <p class="text-[11px] leading-relaxed">Veronika Aneyla Revalina adalah perempuan bertahun kelahiran 2007 yang supel dan suka mencoba banyak hal. Ia gemar menulis, membaca buku, bernyanyi, menonton film, dan pastinya berhalusinasi. Statusnya mahasiswa yang hidup dalam keluarga kecil sederhana pun bahagia. Ia kini tengah berkuliah di Kampus Sanata Dharma. Kalian bisa menemuinya di Wattpad, Instagram, sekaligus Youtube untuk mengenalnya lebih jauh.</p>
-                                <div>
-                                    <a href="https://instagram.com/aneylarevaa_" target="_blank" class="inline-flex items-center space-x-1 bg-[#2d6a4f] hover:bg-[#25573f] text-white text-[11px] px-3 py-1.5 rounded-lg font-medium transition">
-                                        <span>📸 Instagram @aneylarevaa_</span>
-                                    </a>
-                                </div>
+                    <!-- Anggota 3 (Aneyla) -->
+                    <div class="bg-white rounded-xl border border-emerald-100 overflow-hidden transition shadow-xs">
+                        <button onclick="toggleProfile('profile3')" class="w-full p-3 text-left font-bold text-[#1b4332] text-xs flex items-center justify-between hover:bg-emerald-50 transition">
+                            <span>Aneyla</span>
+                            <span id="icon-profile3" class="text-xs text-[#2d6a4f] transform transition-transform duration-200">▼</span>
+                        </button>
+                        <div id="content-profile3" class="hidden px-3 pb-3 pt-1 border-t border-slate-100 text-slate-600 space-y-3">
+                            <!-- Foto Profil Aneyla menggunakan Raw Link GitHub -->
+                            <div class="flex justify-center my-2">
+                                <img src="https://raw.githubusercontent.com/slangvengers/slang-saurus/main/Aneyla_Profile.jpg" alt="Aneyla" class="w-28 h-28 object-cover rounded-xl shadow-md border-2 border-emerald-200">
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Veronika Aneyla Revalina adalah perempuan bertahun kelahiran 2007 yang supel dan suka mencoba banyak hal. Ia gemar menulis, membaca buku, bernyanyi, menonton film, dan pastinya berhalusinasi. Statusnya mahasiswa yang hidup dalam keluarga kecil sederhana pun bahagia. Ia kini tengah berkuliah di Kampus Sanata Dharma. Kalian bisa menemuinya di Wattpad, Instagram, sekaligus Youtube untuk mengenalnya lebih jauh.</p>
+                            <div>
+                                <a href="https://instagram.com/aneylarevaa_" target="_blank" class="inline-flex items-center space-x-1 bg-[#2d6a4f] hover:bg-[#25573f] text-white text-[11px] px-3 py-1.5 rounded-lg font-medium transition">
+                                    <span>📸 Instagram @aneylarevaa_</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <div class="mt-5 text-center">
                 <button onclick="closeDevModal()" class="bg-[#2d6a4f] hover:bg-[#25573f] text-white text-xs px-4 py-2 rounded-xl font-medium transition">Mengerti</button>
             </div>
